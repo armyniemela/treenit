@@ -96,6 +96,8 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script>
+        let totalWorkouts = 0;
+
         function submitSurvey() {
             let workoutCount = 0;
 
@@ -111,6 +113,9 @@
             if (document.querySelector('input[name="workout40"]:checked').value === "yes") {
                 workoutCount++;
             }
+
+            totalWorkouts += workoutCount;
+            document.getElementById('totalWorkouts').innerText = "Treenejä yhteensä: " + totalWorkouts;
 
             let resultText = "";
 
@@ -149,7 +154,7 @@
                 <label class="answer"><input type="radio" name="workout30" value="yes"> Kyllä</label>
                 <label><input type="radio" name="workout30" value="no"> Ei</label>
             </div>
-           
+
             <div class="question">
                 <p>... Ja toisenkin kerran 30 minuuttia</p>
                 <label class="answer"><input type="radio" name="secondWorkout30" value="yes"> Kyllä</label>
@@ -172,8 +177,7 @@
         <button onclick="submitSurvey()">Tulos</button>
 
         <p id="result"></p>
-
-    </div>
+        <p id="totalWorkouts">Treenejä yhteensä: 0</p>
     </div>
 </body>
 
