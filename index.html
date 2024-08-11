@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jukan treenit</title>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-size: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+            background-color: limegreen; /* Taustaväri */
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+        }
+
+        .header {
+            padding: 3em 0;
+        }
+
+        figure {
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+
+        h1 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            color: whitesmoke;
+            font-size: 3em;
+            line-height: 1.1;
+        }
+
+        .subhead {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        iframe,
+        img,
+        video {
+            max-width: 100%;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+        ul {
+            margin: 0;
+            padding-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        iframe {
+            padding-bottom: 1.2em;
+        }
+
+        .full-width figure {
+            text-align: center;
+        }
+
+        /* margin on mobile */
+        @media (max-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+
+            .content {
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+        }
+
+        .question {
+            padding-bottom: 2em;
+        }
+
+        .answer {
+            margin-right: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+        function submitSurvey() {
+            let workoutCount = 0;
+
+            if (document.querySelector('input[name="workout30"]:checked').value === "yes") {
+                workoutCount++;
+            }
+            if (document.querySelector('input[name="secondWorkout30"]:checked').value === "yes") {
+                workoutCount++;
+            }
+            if (document.querySelector('input[name="hardWorkout"]:checked').value === "yes") {
+                workoutCount++;
+            }
+            if (document.querySelector('input[name="workout40"]:checked').value === "yes") {
+                workoutCount++;
+            }
+
+            let resultText = "";
+
+            if (workoutCount === 4) {
+                resultText = "Olet tehnyt 4 harjoitusta, mahtavaa työtä!";
+                confetti();
+            } else if (workoutCount === 3) {
+                resultText = "Olet tehnyt 3 harjoitusta, loistava tulos!";
+                confetti();
+            } else if (workoutCount === 2) {
+                resultText = "Olet tehnyt 2 harjoitusta, ihan hyvä tulos!";
+            } else if (workoutCount === 1) {
+                resultText = "Olet tehnyt 1 harjoituksen ja saanut hyvin lepoa.";
+            } else {
+                resultText = "Et ole harjoitellut, onko kaikki kunnossa?";
+            }
+
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="header">
+            <h1>Jaksaa, jaksaa ja jaksaa!</h1>
+        </div>
+
+        <p>Tavoite elokuun treeneissä neljä harjoitusta viikossa</p>
+        <ul>
+        </ul>
+
+        <div>
+            <div class="question">
+                <p>Olen soutanut 30 minuuttia</p>
+                <label class="answer"><input type="radio" name="workout30" value="yes"> Kyllä</label>
+                <label><input type="radio" name="workout30" value="no"> Ei</label>
+            </div>
+           
+            <div class="question">
+                <p>... Ja toisenkin kerran 30 minuuttia</p>
+                <label class="answer"><input type="radio" name="secondWorkout30" value="yes"> Kyllä</label>
+                <label><input type="radio" name="secondWorkout30" value="no"> Ei</label>
+            </div>
+
+            <div class="question">
+                <p>Olen tehnyt kovan soudun</p>
+                <label class="answer"><input type="radio" name="hardWorkout" value="yes"> Kyllä</label>
+                <label><input type="radio" name="hardWorkout" value="no"> Ei</label>
+            </div>
+
+            <div class="question">
+                <p>Lisäksi soudin 40 minuuttia ja jopa pidempään!</p>
+                <label class="answer"><input type="radio" name="workout40" value="yes"> Kyllä</label>
+                <label><input type="radio" name="workout40" value="no"> Ei</label>
+            </div>
+        </div>
+
+        <button onclick="submitSurvey()">Tulos</button>
+
+        <p id="result"></p>
+
+    </div>
+    </div>
+</body>
+
+</html>
